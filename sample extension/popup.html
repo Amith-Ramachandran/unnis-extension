@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Getting Started Extension's Popup</title>
+    <link rel="stylesheet" type="text/css" href="styles.css"></link>
+    <script src="jquery.min.js"></script>
+    <script src="socket.io.js"></script>
+    <script src="popup.js"></script>
+    <style>
+      body {
+        font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+        font-size: 100%;
+      }
+      #button {
+        white-space: pre;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="text" name="message" id="message">
+    <button id="button">Send</button>
+    <img id="image-result" hidden>
+  </body>
+</html>
+
