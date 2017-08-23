@@ -16,9 +16,9 @@ socket.on('connect', function(){
 socket.on('new_message', function(message){
 	var opt = {
 		type: "basic",
-		title: 'SOS from '+  username,
+		title: 'SOS from '+  message.username,
 		message: message.message,
-		iconUrl: image,
+		iconUrl: message.image,
 	}
 	chrome.notifications.create('', opt, replyBtnClick);
 	function replyBtnClick(id) {};
@@ -31,5 +31,9 @@ socket.on('disconnect', function(){
 chrome.runtime.onMessage.addListener(messageReceived);
 
 function messageReceived(msg) {
-   socket.emit('sos_message', msg);
+   var message = {};
+   message.message = msg.message;
+   message.username = username;
+   message.image = image;
+   socket.emit('sos_message', message);
 }
