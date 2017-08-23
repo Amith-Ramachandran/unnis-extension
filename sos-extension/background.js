@@ -17,7 +17,7 @@ socket.on('new_message', function(message){
 	if(userEmail !== message.email) {
 		var opt = {
 			type: "basic",
-			title: 'SOS by '+  message.username,
+			title: message.username,
 			message: message.message,
 			iconUrl: message.image,
 		}
