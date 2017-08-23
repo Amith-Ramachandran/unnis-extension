@@ -16,7 +16,7 @@ socket.on('connect', function(){
 socket.on('new_message', function(message){
 	var opt = {
 		type: "basic",
-		title: 'SOS from '+  message.username,
+		title: 'SOS by '+  message.username,
 		message: message.message,
 		iconUrl: message.image,
 	}
