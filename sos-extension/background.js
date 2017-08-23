@@ -1,6 +1,6 @@
-var username, image;
+var username, image, userEmail;
 chrome.identity.getProfileUserInfo(function(data) {
-	console.log(data);
+	userEmail = data.email;
 	$.get('http://picasaweb.google.com/data/entry/api/user/' + data.email + '?alt=json', function(userData) {
 		username = userData.entry.gphoto$nickname.$t;
 		image = userData.entry.gphoto$thumbnail.$t;
@@ -14,14 +14,16 @@ socket.on('connect', function(){
 });
 
 socket.on('new_message', function(message){
-	var opt = {
-		type: "basic",
-		title: 'SOS by '+  message.username,
-		message: message.message,
-		iconUrl: message.image,
+	if(userEmail !== message.email) {
+		var opt = {
+			type: "basic",
+			title: 'SOS by '+  message.username,
+			message: message.message,
+			iconUrl: message.image,
+		}
+		chrome.notifications.create('', opt, replyBtnClick);
+		function replyBtnClick(id) {};
 	}
-	chrome.notifications.create('', opt, replyBtnClick);
-	function replyBtnClick(id) {};
 });
 
 socket.on('disconnect', function(){
@@ -35,5 +37,6 @@ function messageReceived(msg) {
    message.message = msg.message;
    message.username = username;
    message.image = image;
+   message.email = userEmail;
    socket.emit('sos_message', message);
 }
