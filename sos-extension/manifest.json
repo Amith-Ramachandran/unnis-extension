@@ -5,7 +5,9 @@
 	"version": "1",
 	"author": "Amith Ramachandran",
 	"icons": { 
-		"16": "sos_logo.png"
+		"16": "sos_logo.png",
+		"48": "sos_logo_48.png",
+		"128": "sos_logo_128.png"
 	},
 	"browser_action": {
 		"default_title": "Sample Extension title",

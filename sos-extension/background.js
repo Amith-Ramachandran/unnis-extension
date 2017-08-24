@@ -4,6 +4,9 @@ chrome.identity.getProfileUserInfo(function(data) {
 	$.get('http://picasaweb.google.com/data/entry/api/user/' + data.email + '?alt=json', function(userData) {
 		username = userData.entry.gphoto$nickname.$t;
 		image = userData.entry.gphoto$thumbnail.$t;
+		chrome.runtime.sendMessage({image: image}, function(response) {
+			console.log(response);
+		});
 	});
 });
 

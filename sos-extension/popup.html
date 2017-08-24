@@ -3,6 +3,7 @@
   <head>
     <title>Getting Started Extension's Popup</title>
     <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaijaan" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="styles.css"></link>
@@ -25,7 +26,9 @@
         top: 0;
         right: 0;
         height: 50px;
-        width: 50px;
+        display: inline-block;
+        float: left;
+        width: 15%;
         background-color: rgba(3, 169, 244, 0.44);
         outline: none;
         cursor: pointer;
@@ -50,11 +53,14 @@
         color: #464646;
         font-size: 18px;
       }
-      .wrapper .top .about {
-        font-family: 'Ubuntu', sans-serif;
-        margin: 0;
-        color: gray;
-        font-size: 14px;
+      .wrapper img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        box-shadow: 0 0 7px #838383;
       }
       .input-wrapper {
         position: relative;
@@ -63,7 +69,7 @@
         border-bottom-right-radius: 50%;
         content: 'Sent';
         line-height: 50px;
-        font-family: 'Baloo Bhaijaan', cursive;
+        font-family: 'Ubuntu', cursive;
         width: 0%;
         height: 0px;
         position: absolute;
@@ -88,19 +94,25 @@
         border-bottom-right-radius: 10px;
       }
       input {
-        font-family: 'Baloo Bhaijaan', cursive;
-        width: 100%;
+        font-family: 'Ubuntu', cursive;
+        width: 74%;
+        display: inline-block;
+        float: left;
         background-color: transparent;
         font-size: 18px;
         height: 50px;
         padding: 0 20px;
         border: none;
         outline: none;
-        color: #03a9f4;
+        color: #0087c4;
         position: relative;
+        /*ellipsis*/
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow:ellipsis;
       }
       ::-webkit-input-placeholder { 
-        color: rgba(3, 169, 244, 0.27);
+        color: rgba(3, 169, 244, 0.55);
       }
     </style>
   </head>
@@ -108,6 +120,7 @@
     <div class="wrapper">
       <div class="top">
         <p class="title">Broadcast Now!</p>
+        <img id="avatar" />
       </div>
       <div class="input-wrapper">
         <input type="text" placeholder="Type here.." name="message" id="message">

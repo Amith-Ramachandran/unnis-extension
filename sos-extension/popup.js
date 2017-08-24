@@ -13,6 +13,7 @@ function sendMessage() {
 }
 
 $(document).ready(function(){
+	$("#avatar").attr("src", "logo.png" );
 	$('#button').click(function(){
 		sendMessage();
 	});
