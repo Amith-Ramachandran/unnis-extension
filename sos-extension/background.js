@@ -23,6 +23,7 @@ socket.on('new_message', function(message){
 			title: message.username,
 			message: message.message,
 			iconUrl: message.image,
+			requireInteraction: true
 		}
 		chrome.notifications.create('', opt, replyBtnClick);
 		function replyBtnClick(id) {};
