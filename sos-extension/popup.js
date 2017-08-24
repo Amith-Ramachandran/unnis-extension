@@ -13,7 +13,7 @@ function sendMessage() {
 }
 
 $(document).ready(function(){
-	$("#avatar").attr("src", "logo.png" );
+	$("#avatar").attr("src", chrome.extension.getBackgroundPage().image);
 	$('#button').click(function(){
 		sendMessage();
 	});
