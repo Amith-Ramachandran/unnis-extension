@@ -1,3 +1,5 @@
+var socket = io('http://10.7.20.3:2000');
+
 var username, image, userEmail;
 chrome.identity.getProfileUserInfo(function(data) {
 	userEmail = data.email;
@@ -7,10 +9,10 @@ chrome.identity.getProfileUserInfo(function(data) {
 		chrome.runtime.sendMessage({image: image}, function(response) {
 			console.log(response);
 		});
+		notifyMeAlive({username: username, image: image, email: userEmail});
 	});
 });
 
-var socket = io('http://10.7.20.3:2000');
 
 socket.on('connect', function(){
 	console.log('socket connected');
@@ -30,6 +32,10 @@ socket.on('new_message', function(message){
 	}
 });
 
+socket.on('live_members', function(message){
+	console.log(message);
+});
+
 socket.on('disconnect', function(){
 	console.log('socket disconnect');
 });
@@ -43,4 +49,8 @@ function messageReceived(msg) {
    message.image = image;
    message.email = userEmail;
    socket.emit('sos_message', message);
+}
+
+function notifyMeAlive(user) {
+	socket.emit('keep_alive', user);
 }
