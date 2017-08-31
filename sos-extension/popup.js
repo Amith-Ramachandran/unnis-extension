@@ -12,6 +12,11 @@ function sendMessage() {
 	});
 }
 
+function checkLiveMembers() {
+	console.log('check live mem..');
+	console.log(chrome.extension.getBackgroundPage().liveMembers);
+}
+
 $(document).ready(function(){
 	$("#avatar").attr("src", chrome.extension.getBackgroundPage().image);
 	$('#button').click(function(){
@@ -22,5 +27,7 @@ $(document).ready(function(){
 			sendMessage();
 		}
 	});
+	//do periodically...
+	checkLiveMembers();
 });
 

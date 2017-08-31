@@ -1,6 +1,6 @@
 var socket = io('http://10.7.20.3:2000');
 
-var username, image, userEmail;
+var username, image, userEmail, liveMembers = [];
 chrome.identity.getProfileUserInfo(function(data) {
 	userEmail = data.email;
 	$.get('http://picasaweb.google.com/data/entry/api/user/' + data.email + '?alt=json', function(userData) {
@@ -9,6 +9,7 @@ chrome.identity.getProfileUserInfo(function(data) {
 		chrome.runtime.sendMessage({image: image}, function(response) {
 			console.log(response);
 		});
+		//do periodically...
 		notifyMeAlive({username: username, image: image, email: userEmail});
 	});
 });
@@ -32,8 +33,9 @@ socket.on('new_message', function(message){
 	}
 });
 
-socket.on('live_members', function(message){
-	console.log(message);
+socket.on('live_members', function(liveUsers){
+	liveMembers = liveUsers;
+	console.log(liveUsers);
 });
 
 socket.on('disconnect', function(){
